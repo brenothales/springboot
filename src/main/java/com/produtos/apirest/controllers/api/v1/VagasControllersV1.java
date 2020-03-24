@@ -3,8 +3,8 @@ package com.produtos.apirest.controllers.api.v1;
 
 import java.util.List;
 
-import com.produtos.apirest.models.Produto;
-import com.produtos.apirest.repository.ProdutoRepository;
+import com.produtos.apirest.models.Vaga;
+import com.produtos.apirest.repository.VagasRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,41 +26,41 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping(value = "api/v1")
-@Api(value = "API REST Produtos")
+@Api(value = "API REST Vagas")
 @CrossOrigin(origins = "*")
-public class ProdutosControllersV1 {
+public class VagasControllersV1 {
 
   @Autowired
-  ProdutoRepository produtoRepository;
+  VagasRepository vagasRepository;
 
-  @GetMapping("/produtos")
-  @ApiOperation(value = "Retorna uma lista com todos os produtos")
-  public List<Produto> index(){
-   return produtoRepository.findAll();
+  @GetMapping("/vagas")
+  @ApiOperation(value = "Retorna uma lista com todos os vagas")
+  public List<Vaga> index(){
+   return vagasRepository.findAll();
   }
 
-  @GetMapping("/produto/show/{id}")
-  @ApiOperation(value = "Retorna somente um produto pelo seu identificador (id)")
-  public Produto show(@PathVariable(value = "id") long id){
-   return produtoRepository.findById(id);
+  @GetMapping("/vaga/show/{id}")
+  @ApiOperation(value = "Retorna somente uma vaga pelo seu identificador (id)")
+  public Vaga show(@PathVariable(value = "id") long id){
+   return vagasRepository.findById(id);
   }
 
-  @PostMapping("/produto/new")
+  @PostMapping("/vaga/new")
   @ApiOperation(value = "Cria um novo objeto a partir da rota")
-  public Produto create(@RequestBody Produto produto){
-    return produtoRepository.save(produto);
+  public Vaga create(@RequestBody Vaga vaga){
+    return vagasRepository.save(vaga);
   }
 
-  @PutMapping("/produto")
+  @PutMapping("/vaga")
   @ApiOperation(value = "Atualiza o objeto")
-  public Produto update(@RequestBody Produto produto){
-    return produtoRepository.save(produto);
+  public Vaga update(@RequestBody Vaga vaga){
+    return vagasRepository.save(vaga);
   }
 
-  @DeleteMapping("/produto")
+  @DeleteMapping("/vaga")
   @ApiOperation(value = "Deleta o registro a partir a rota")
-  public void destroy(@RequestBody Produto produto){
-    produtoRepository.delete(produto);
+  public void destroy(@RequestBody Vaga vaga){
+    vagasRepository.delete(vaga);
   }
 
 }
